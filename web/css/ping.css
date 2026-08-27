@@ -1,0 +1,90 @@
+/* Simple Circular Enemy Ping Marker CSS (Key Z Triggered) */
+#enemy-ping-container {
+    position: fixed;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 178;
+    pointer-events: none;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.simple-ping-circle {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: circlePingPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.ping-circle-inner {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.28);
+    backdrop-filter: blur(12px);
+    border: 2px solid #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.7), inset 0 0 10px rgba(239, 68, 68, 0.4);
+    z-index: 2;
+}
+
+.ping-circle-icon {
+    font-size: 1.3rem;
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.9));
+}
+
+.ping-circle-ring {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 2px solid rgba(239, 68, 68, 0.85);
+    animation: circlePingPulse 1.3s ease-out infinite;
+    z-index: 1;
+}
+
+.ping-circle-badge {
+    background: rgba(10, 14, 24, 0.88);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(239, 68, 68, 0.7);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 12px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4), 0 4px 10px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+
+@keyframes circlePingPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes circlePingPulse {
+    0% {
+        transform: translateX(-50%) scale(0.9);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) scale(1.5);
+        opacity: 0;
+    }
+}

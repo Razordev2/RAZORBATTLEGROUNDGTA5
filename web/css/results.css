@@ -1,0 +1,241 @@
+/* Clean Crystal Glass Dual-Panel Arena Leaderboards CSS */
+#results-container {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 1040px;
+    z-index: 200;
+}
+
+.arena-leaderboards-card {
+    background: rgba(12, 16, 26, 0.78);
+    backdrop-filter: blur(32px) saturate(180%);
+    border: 1px solid rgba(56, 189, 248, 0.38);
+    border-radius: 16px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 25px rgba(56, 189, 248, 0.15);
+    padding: 24px 28px;
+    color: #ffffff;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    animation: arenaPopUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.arena-header {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.arena-title {
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #ffffff;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+.arena-subtitle {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Dual Grid Columns */
+.arena-dual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.arena-panel {
+    background: rgba(8, 12, 20, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.arena-panel-title {
+    background: rgba(15, 23, 42, 0.75);
+    padding: 11px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-transform: uppercase;
+}
+
+.arena-table-wrapper {
+    max-height: 340px;
+    overflow-y: auto;
+}
+
+/* Sleek Scrollbar Styling */
+.arena-table-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.arena-table-wrapper::-webkit-scrollbar-track {
+    background: rgba(8, 12, 20, 0.4);
+}
+
+.arena-table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.4);
+    border-radius: 4px;
+}
+
+.arena-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(56, 189, 248, 0.8);
+}
+
+.arena-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+.arena-table th {
+    background: rgba(10, 14, 24, 0.85);
+    color: #94a3b8;
+    font-weight: 800;
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.arena-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.18s ease;
+}
+
+.arena-row:hover {
+    background: rgba(56, 189, 248, 0.12);
+}
+
+.arena-row.active-team-row {
+    background: rgba(56, 189, 248, 0.16);
+}
+
+.team-cell, .player-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+}
+
+.arena-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.arena-name {
+    font-weight: 800;
+    color: #ffffff;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
+}
+
+.player-info-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.arena-subteam {
+    font-size: 0.62rem;
+    color: #94a3b8;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.stat-num {
+    text-align: center;
+    font-weight: 800;
+    color: #ffffff;
+    padding: 8px;
+    font-size: 0.85rem;
+}
+
+.highlight-points {
+    color: #38bdf8;
+    font-weight: 900;
+}
+
+.rank-num {
+    font-weight: 900;
+    font-size: 0.85rem;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: #94a3b8;
+}
+
+.rank-gold {
+    color: #f59e0b;
+    font-size: 0.95rem;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+.rank-silver {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.rank-bronze {
+    color: #d97706;
+    font-size: 0.95rem;
+}
+
+/* Footer Action */
+.arena-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-arena-close {
+    width: 100%;
+    padding: 12px 0;
+    background: rgba(56, 189, 248, 0.16);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    color: #edeff1;
+    font-weight: 900;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.2);
+}
+
+.btn-arena-close:hover {
+    background: rgba(56, 189, 248, 0.32);
+    color: #ffffff;
+    box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
+    transform: translateY(-2px);
+}
+
+/* Entrance Animation */
+@keyframes arenaPopUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.92) translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}

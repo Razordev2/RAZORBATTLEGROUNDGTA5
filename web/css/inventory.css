@@ -1,0 +1,392 @@
+/* FiveM Battleground Dual-Panel Inventory CSS (Frosted Glass Theme) */
+
+#inventory-container {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 250;
+    width: auto;
+}
+
+.dual-inventory-wrapper {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    width: 1100px;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Left & Right Inventory Panels (Frosted Translucent Glass) */
+.inv-panel-left,
+.inv-panel-right {
+    flex: 1;
+    background: rgba(14, 18, 28, 0.68);
+    backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Bar */
+.inv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.inv-user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-name {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #fbbf24;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.inv-title-box {
+    text-align: center;
+}
+
+.inv-title-box h2 {
+    font-size: 1.05rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.title-underline {
+    height: 2.5px;
+    background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+    margin-top: 4px;
+    border-radius: 2px;
+}
+
+.title-underline.gold {
+    background: linear-gradient(90deg, transparent, #eab308, transparent);
+}
+
+.inv-weight-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.weight-label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #94a3b8;
+}
+
+.weight-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    font-family: monospace;
+}
+
+/* Capacity Bar */
+.inv-capacity-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.capacity-fill {
+    height: 100%;
+    background: #f59e0b;
+    border-radius: 2px;
+}
+
+.capacity-fill.gold-fill {
+    background: #eab308;
+}
+
+/* 5 Column Grid Layout */
+.inventory-grid-container {
+    flex-grow: 1;
+}
+
+.inventory-grid-5col {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    max-height: 340px;
+    overflow-y: auto;
+    padding-right: 2px;
+}
+
+/* Slot Styling */
+.inv-slot {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    height: 78px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    padding: 4px;
+}
+
+.inv-slot:hover {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: #f59e0b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.inv-slot.selected {
+    background: rgba(245, 158, 11, 0.22);
+    border-color: #f59e0b;
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.45);
+}
+
+.inv-slot.empty {
+    opacity: 0.22;
+    border-style: dashed;
+    cursor: default;
+}
+
+.inv-slot.empty:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Hotkey Badge (Top-Left 1..5) */
+.slot-hotkey {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #f59e0b;
+    color: #0f172a;
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 1px 5px;
+    border-radius: 7px 0 6px 0;
+}
+
+/* Count Badge (Top-Right x1..x120) */
+.slot-count {
+    position: absolute;
+    top: 3px;
+    right: 4px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.slot-img {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.slot-text-icon {
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    margin-top: 6px;
+    margin-bottom: 4px;
+}
+
+.slot-name-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    text-align: center;
+    width: 92%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* CENTER CONTROLS (Frosted Glass Control Box) */
+.inv-center-controls {
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-self: center;
+    background: rgba(10, 12, 20, 0.75);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+}
+
+.transfer-box,
+.squadmate-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.transfer-box label,
+.squadmate-box label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.amount-stepper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.step-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 800;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.step-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.amount-stepper input {
+    flex-grow: 1;
+    width: 36px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 800;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    padding: 4px;
+    border-radius: 6px;
+    outline: none;
+}
+
+.squadmate-box select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-size: 0.72rem;
+    padding: 6px 8px;
+    border-radius: 6px;
+    outline: none;
+}
+
+/* Action Buttons Grid */
+.center-action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.btn-inv-action {
+    width: 100%;
+    padding: 9px 0;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(10px);
+}
+
+.btn-inv-action:hover {
+    transform: translateY(-2px);
+}
+
+.btn-gold-give {
+    background: rgba(245, 158, 11, 0.14);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #fbbf24;
+}
+.btn-gold-give:hover {
+    background: rgba(245, 158, 11, 0.28);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+}
+
+.btn-blue-use {
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: #38bdf8;
+}
+.btn-blue-use:hover {
+    background: rgba(56, 189, 248, 0.28);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.btn-red-drop {
+    background: rgba(239, 68, 68, 0.14);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #f87171;
+}
+.btn-red-drop:hover {
+    background: rgba(239, 68, 68, 0.28);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+.btn-close-dual {
+    margin-top: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #94a3b8;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 7px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.btn-close-dual:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    border-color: #ef4444;
+}

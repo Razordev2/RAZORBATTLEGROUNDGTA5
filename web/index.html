@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleground UI</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/room.css">
+    <link rel="stylesheet" href="css/team.css">
+    <link rel="stylesheet" href="css/hud.css">
+    <link rel="stylesheet" href="css/inventory.css">
+    <link rel="stylesheet" href="css/countdown.css">
+    <link rel="stylesheet" href="css/killfeed.css">
+    <link rel="stylesheet" href="css/elimination.css">
+    <link rel="stylesheet" href="css/winner.css">
+    <link rel="stylesheet" href="css/results.css">
+    <link rel="stylesheet" href="css/redeem.css">
+    <link rel="stylesheet" href="css/airdrop.css">
+    <link rel="stylesheet" href="css/zone_warn.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/spectate.css">
+    <link rel="stylesheet" href="css/ping.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Player Bottom Status & Ammo HUD (Matches Image 1) -->
+        <div id="player-hud" class="ui-panel">
+            <div class="player-hud-top-bar">
+                <div class="hud-stat-group">
+                    <img src="icon/tabler_run-sprint.png" alt="Sprint" class="hud-img-icon icon-sprint" id="hud-sprint-icon">
+                    <img src="icon/Vector.png" alt="Gun" class="hud-img-icon icon-gun" id="hud-weapon-icon">
+                </div>
+                <div class="hud-divider">|</div>
+                <div class="hud-ammo-text" id="hud-ammo-text">0/0</div>
+                <div class="hud-divider">|</div>
+                <div class="hud-stat-group">
+                    <img src="icon/Group.png" alt="Helmet" class="hud-img-icon icon-helmet" id="hud-helmet-icon">
+                    <img src="icon/Vector-1.png" alt="Armor" class="hud-img-icon icon-vest" id="hud-vest-icon">
+                </div>
+            </div>
+            <div class="player-hud-bottom-bar">
+                <div class="hud-single-bar">
+                    <div class="hud-bar-fill" id="hud-health-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Battleground Esports Chat UI (Frosted Glass Layout) -->
+        <div id="chat-container" class="ui-panel">
+            <div class="chat-messages-wrapper" id="chat-messages-box">
+                <div class="chat-msg-row msg-system">
+                    <span class="chat-tag tag-system">[SYSTEM]</span>
+                    <span class="chat-author">SERVER:</span>
+                    <span class="chat-text">Selamat datang di Battleground Competitive Arena!</span>
+                </div>
+                <div class="chat-msg-row msg-special">
+                    <span class="chat-tag tag-admin">[ADMIN]</span>
+                    <span class="chat-author">Admin:</span>
+                    <span class="chat-text">Match akan dimulai. Dilarang melakukan teaming!</span>
+                </div>
+                <div class="chat-msg-row msg-player">
+                    <span class="chat-tag tag-team">[TEAM]</span>
+                    <span class="chat-author">user:</span>
+                    <span class="chat-text">Halo team, siap landing di Pochinki!</span>
+                </div>
+                <div class="chat-msg-row msg-player">
+                    <span class="chat-tag tag-player">[PLAYER]</span>
+                    <span class="chat-author">user:</span>
+                    <span class="chat-text">Good luck all teams!</span>
+                </div>
+                <div class="chat-msg-row msg-player">
+                    <span class="chat-tag tag-player">[PLAYER]</span>
+                    <span class="chat-author">user:</span>
+                    <span class="chat-text">Gas pol bro, jgn kasih kendor!</span>
+                </div>
+                <div class="chat-msg-row msg-player">
+                    <span class="chat-tag tag-team">[TEAM]</span>
+                    <span class="chat-author">user:</span>
+                    <span class="chat-text">Saya bawa Medkit 3 biji & Armor Lvl 3.</span>
+                </div>
+                <div class="chat-msg-row msg-system">
+                    <span class="chat-tag tag-system">[SYSTEM]</span>
+                    <span class="chat-author">SERVER:</span>
+                    <span class="chat-text">Airdrop Crate telah diturunkan di dekat Safe Zone!</span>
+                </div>
+                <div class="chat-msg-row msg-special">
+                    <span class="chat-tag tag-admin">[ADMIN]</span>
+                    <span class="chat-author">Admin:</span>
+                    <span class="chat-text">Perhatikan safezone, zona fase 2 mulai menyempit!</span>
+                </div>
+            </div>
+            
+            <!-- Chat Input Box (Appears on T Key / Focus) -->
+            <div id="chat-input-wrapper" class="chat-input-box hidden">
+                <span class="chat-channel-badge">[ALL]</span>
+                <input type="text" id="chat-input-field" placeholder="Ketik pesan chat..." maxlength="128" autocomplete="off">
+                <button id="btn-send-chat" class="btn-chat-send">SEND</button>
+            </div>
+        </div>
+
+        <!-- In-Game Squad List HUD (Middle-Left Compact) -->
+        <div id="team-hud" class="ui-panel hidden">
+            <div class="squad-hud-header">
+                <img id="hud-team-logo" src="assets/images/default_team.png" alt="Logo" class="squad-header-logo">
+                <span id="hud-team-name" class="squad-header-name">PENGHANCUR</span>
+            </div>
+            <div class="squad-hud-list" id="hud-members-list">
+                <div class="squad-card-row">
+                    <div class="squad-card-top">
+                        <span class="squad-number-badge badge-1">1</span>
+                        <span class="squad-player-name">user</span>
+                        <img src="icon/Vector.png" alt="Gun" class="squad-img-icon">
+                    </div>
+                    <div class="squad-card-bottom">
+                        <div class="squad-health-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="squad-card-row">
+                    <div class="squad-card-top">
+                        <span class="squad-number-badge badge-2">2</span>
+                        <span class="squad-player-name">user</span>
+                        <img src="icon/Vector.png" alt="Gun" class="squad-img-icon">
+                    </div>
+                    <div class="squad-card-bottom">
+                        <div class="squad-health-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="squad-card-row">
+                    <div class="squad-card-top">
+                        <span class="squad-number-badge badge-3">3</span>
+                        <span class="squad-player-name">user</span>
+                        <img src="icon/Vector.png" alt="Gun" class="squad-img-icon">
+                    </div>
+                    <div class="squad-card-bottom">
+                        <div class="squad-health-fill" style="width: 60%;"></div>
+                    </div>
+                </div>
+                <div class="squad-card-row">
+                    <div class="squad-card-top">
+                        <span class="squad-number-badge badge-4">4</span>
+                        <span class="squad-player-name">user</span>
+                        <img src="icon/Vector.png" alt="Gun" class="squad-img-icon">
+                    </div>
+                    <div class="squad-card-bottom">
+                        <div class="squad-health-fill" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="squad-card-row">
+                    <div class="squad-card-top">
+                        <span class="squad-number-badge badge-5">5</span>
+                        <span class="squad-player-name">user</span>
+                        <img src="icon/Vector.png" alt="Gun" class="squad-img-icon">
+                    </div>
+                    <div class="squad-card-bottom">
+                        <div class="squad-health-fill" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="squad-card-row">
+                    <div class="squad-card-top">
+                        <span class="squad-number-badge badge-6">6</span>
+                        <span class="squad-player-name">user</span>
+                        <img src="icon/Vector.png" alt="Gun" class="squad-img-icon">
+                    </div>
+                    <div class="squad-card-bottom">
+                        <div class="squad-health-fill" style="width: 40%;"></div>
+                    </div>
+                </div>
+                <div class="squad-card-row">
+                    <div class="squad-card-top">
+                        <span class="squad-number-badge badge-7">7</span>
+                        <span class="squad-player-name">user</span>
+                        <img src="icon/Vector.png" alt="Gun" class="squad-img-icon">
+                    </div>
+                    <div class="squad-card-bottom">
+                        <div class="squad-health-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="squad-card-row">
+                    <div class="squad-card-top">
+                        <span class="squad-number-badge badge-8">8</span>
+                        <span class="squad-player-name">user</span>
+                        <img src="icon/Vector.png" alt="Gun" class="squad-img-icon">
+                    </div>
+                    <div class="squad-card-bottom">
+                        <div class="squad-health-fill" style="width: 95%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FiveM Battleground Dual Panel Inventory UI (Clean Modern Layout) -->
+        <div id="inventory-container" class="ui-panel hidden">
+            <div class="dual-inventory-wrapper">
+                
+                <!-- LEFT PANEL: PLAYER INVENTORY -->
+                <div class="inventory-card inv-panel-left">
+                    <!-- Top Header -->
+                    <div class="inv-header">
+                        <div class="inv-user-info">
+                            <span class="user-name" id="inv-player-name">Player Name</span>
+                        </div>
+                        <div class="inv-title-box">
+                            <h2>INVENTORY</h2>
+                            <div class="title-underline"></div>
+                        </div>
+                        <div class="inv-weight-box">
+                            <span class="weight-label">CAPACITY</span>
+                            <span class="weight-text" id="inv-weight-text">28.7 / 173.0 kg</span>
+                        </div>
+                    </div>
+
+                    <!-- Capacity Progress Line -->
+                    <div class="inv-capacity-bar">
+                        <div class="capacity-fill" style="width: 35%;"></div>
+                    </div>
+
+                    <!-- Left Grid (5 columns x 3 rows) -->
+                    <div class="inventory-grid-container">
+                        <div class="inventory-grid-5col" id="inventory-left-grid">
+                            <div class="inv-slot selected" data-name="WEAPON_CARBINERIFLE" data-type="WEAPON" data-count="1">
+                                <span class="slot-hotkey">1</span>
+                                <span class="slot-count">x1</span>
+                                <img src="icon/Vector.png" alt="M416" class="slot-img">
+                                <span class="slot-name-tag">M416 Rifle</span>
+                            </div>
+                            <div class="inv-slot" data-name="WEAPON_ASSAULTRIFLE" data-type="WEAPON" data-count="1">
+                                <span class="slot-hotkey">2</span>
+                                <span class="slot-count">x1</span>
+                                <img src="icon/Vector.png" alt="AK47" class="slot-img">
+                                <span class="slot-name-tag">AK47 Rifle</span>
+                            </div>
+                            <div class="inv-slot" data-name="WEAPON_PISTOL" data-type="WEAPON" data-count="1">
+                                <span class="slot-hotkey">3</span>
+                                <span class="slot-count">x1</span>
+                                <img src="icon/Vector.png" alt="Pistol" class="slot-img">
+                                <span class="slot-name-tag">Pistol 9mm</span>
+                            </div>
+                            <div class="inv-slot" data-name="medkit" data-type="MEDICAL" data-count="2">
+                                <span class="slot-hotkey">4</span>
+                                <span class="slot-count">x2</span>
+                                <span class="slot-text-icon">MEDKIT</span>
+                                <span class="slot-name-tag">Medkit</span>
+                            </div>
+                            <div class="inv-slot" data-name="bandage" data-type="MEDICAL" data-count="5">
+                                <span class="slot-hotkey">5</span>
+                                <span class="slot-count">x5</span>
+                                <span class="slot-text-icon">BANDAGE</span>
+                                <span class="slot-name-tag">Bandage</span>
+                            </div>
+                            <div class="inv-slot" data-name="armor_lvl3" data-type="ARMOR" data-count="1">
+                                <span class="slot-count">x1</span>
+                                <img src="icon/Vector-1.png" alt="Armor" class="slot-img">
+                                <span class="slot-name-tag">Armor Lvl 3</span>
+                            </div>
+                            <div class="inv-slot" data-name="ammo_556" data-type="AMMO" data-count="120">
+                                <span class="slot-count">x120</span>
+                                <span class="slot-text-icon">AMMO</span>
+                                <span class="slot-name-tag">5.56mm Ammo</span>
+                            </div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CENTER CONTROL BAR (TRANSFER, AMOUNT, GIVE, USE, DROP) -->
+                <div class="inv-center-controls">
+                    <div class="transfer-box">
+                        <label>AMOUNT</label>
+                        <div class="amount-stepper">
+                            <button id="btn-amount-minus" class="step-btn">-</button>
+                            <input type="number" id="input-item-amount" value="1" min="1">
+                            <button id="btn-amount-plus" class="step-btn">+</button>
+                        </div>
+                    </div>
+
+                    <div class="center-action-buttons">
+                        <button id="btn-action-give" class="btn-inv-action btn-gold-give">
+                            <span>GIVE</span>
+                        </button>
+                        <button id="btn-action-use" class="btn-inv-action btn-blue-use">
+                            <span>USE / EQUIP</span>
+                        </button>
+                        <button id="btn-action-drop" class="btn-inv-action btn-red-drop">
+                            <span>DROP</span>
+                        </button>
+                    </div>
+                    
+                    <button class="btn-close-dual" id="btn-close-inventory">&times; CLOSE</button>
+                </div>
+
+                <!-- RIGHT PANEL: GROUND / VICINITY LOOT -->
+                <div class="inventory-card inv-panel-right">
+                    <!-- Top Header -->
+                    <div class="inv-header">
+                        <div class="inv-user-info">
+                            <span class="user-name">GROUND / VICINITY</span>
+                        </div>
+                        <div class="inv-title-box">
+                            <h2>GROUND LOOT</h2>
+                            <div class="title-underline gold"></div>
+                        </div>
+                        <div class="inv-weight-box">
+                            <span class="weight-label">CAPACITY</span>
+                            <span class="weight-text">15.0 / 500.0 kg</span>
+                        </div>
+                    </div>
+
+                    <!-- Capacity Progress Line -->
+                    <div class="inv-capacity-bar">
+                        <div class="capacity-fill gold-fill" style="width: 10%;"></div>
+                    </div>
+
+                    <!-- Right Grid (5 columns x 3 rows) -->
+                    <div class="inventory-grid-container">
+                        <div class="inventory-grid-5col" id="inventory-right-grid">
+                            <div class="inv-slot" data-name="medkit" data-count="1">
+                                <span class="slot-count">x1</span>
+                                <span class="slot-text-icon">MEDKIT</span>
+                                <span class="slot-name-tag">Medkit</span>
+                            </div>
+                            <div class="inv-slot" data-name="ammo_556" data-count="60">
+                                <span class="slot-count">x60</span>
+                                <span class="slot-text-icon">AMMO</span>
+                                <span class="slot-name-tag">5.56mm Ammo</span>
+                            </div>
+                            <div class="inv-slot" data-name="WEAPON_PISTOL" data-count="1">
+                                <span class="slot-count">x1</span>
+                                <img src="icon/Vector.png" alt="Pistol" class="slot-img">
+                                <span class="slot-name-tag">Pistol 9mm</span>
+                            </div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                            <div class="inv-slot empty"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Target Squadmate Selector Modal (Only shown when giving to > 1 player) -->
+        <div id="give-target-modal" class="modal-overlay hidden">
+            <div class="military-card give-modal-box">
+                <div class="panel-header">
+                    <h2>SELECT <span class="highlight">RECIPIENT</span></h2>
+                    <button class="btn-close" id="btn-close-give-modal">&times;</button>
+                </div>
+                <div class="panel-body">
+                    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 12px;">Multiple squadmates nearby. Select player & ID:</p>
+                    <div class="form-group" style="width: 100%;">
+                        <select id="select-target-player" class="input-dark" style="width: 100%; font-size: 0.9rem; padding: 10px;"></select>
+                    </div>
+                    <div class="give-modal-actions" style="margin-top: 18px; display: flex; gap: 10px;">
+                        <button id="btn-confirm-give-modal" class="btn btn-primary" style="flex: 1;">CONFIRM GIVE</button>
+                        <button id="btn-cancel-give-modal" class="btn btn-secondary" style="flex: 1;">CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Room / Team Browser UI Panel -->
+        <div id="room-container" class="ui-panel hidden">
+            <div class="military-card room-box">
+                <div class="panel-header">
+                    <h2><span class="highlight">TIM</span> PLAYER</h2>
+                    <button class="btn-close" id="btn-close-room">&times;</button>
+                </div>
+                
+                <div class="panel-body">
+                    <!-- Current Active Room View (if in room) -->
+                    <div id="active-room-view" class="hidden">
+                        <div class="room-info-bar">
+                            <div>
+                                <h3 id="room-title">NAMA TIM</h3>
+                                <p id="room-id-tag">TIM ID: #0000</p>
+                            </div>
+                            <button id="btn-leave-room" class="btn btn-danger">LEAVE TIM</button>
+                        </div>
+
+                        <div class="team-creation-bar">
+                            <input type="text" id="input-team-name" placeholder="Team Name" class="input-dark">
+                            <input type="text" id="input-team-logo" placeholder="Team Logo URL" class="input-dark">
+                            <button id="btn-create-team" class="btn btn-primary">CREATE TIM</button>
+                        </div>
+
+                        <div id="teams-grid" class="teams-grid"></div>
+
+                        <div class="host-controls">
+                            <button id="btn-start-match" class="btn btn-success btn-large hidden">START MATCH</button>
+                        </div>
+                    </div>
+
+                    <!-- Room / Team Browser View -->
+                    <div id="room-browser-view">
+                        <div class="browser-actions browser-top-bar">
+                            <div class="search-box">
+                                <input type="text" id="input-search-team" class="input-dark search-team-input" placeholder="🔍 Cari Nama Tim / Squad...">
+                            </div>
+                            <button id="btn-open-create-modal" class="btn btn-primary btn-create-tim-accent">+ CREATE TIM</button>
+                        </div>
+
+                        <!-- Sleek Team Cards List (Clean Modern Custom UI) -->
+                        <div class="team-list-container" id="team-list-container">
+                            <div class="squad-card-item">
+                                <div class="squad-card-left">
+                                    <div class="squad-avatar-wrapper">
+                                        <img src="assets/images/default_team.png" class="squad-avatar-img" alt="Logo">
+                                    </div>
+                                    <div class="squad-title-box">
+                                        <h3 class="squad-name-title">ALPHA SQUAD BATTLEGROUND</h3>
+                                        <span class="squad-subtitle">PUBLIC SQUAD</span>
+                                    </div>
+                                </div>
+                                <button class="btn-join-tim-card" onclick="RoomUI.promptJoin('1001', false)">JOIN TIM</button>
+                            </div>
+
+                            <div class="squad-card-item">
+                                <div class="squad-card-left">
+                                    <div class="squad-avatar-wrapper">
+                                        <img src="assets/images/default_team.png" class="squad-avatar-img" alt="Logo">
+                                    </div>
+                                    <div class="squad-title-box">
+                                        <h3 class="squad-name-title">PRO WARRIORS TOURNAMENT <span class="lock-tag">🔒</span></h3>
+                                        <span class="squad-subtitle">PASSWORD PROTECTED</span>
+                                    </div>
+                                </div>
+                                <button class="btn-join-tim-card" onclick="RoomUI.promptJoin('1002', true)">JOIN TIM</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tactical Battleground Interactive Map Overlay (Toggle Key M) -->
+        <div id="map-container" class="modal-overlay hidden">
+            <div class="map-modal-card-glass">
+                <div class="map-header-bar">
+                    <div class="map-header-left">
+                        <span class="map-header-icon">🗺️</span>
+                        <h2 class="map-header-title">TACTICAL BATTLEGROUND MAP</h2>
+                        <span class="map-phase-badge" id="map-phase-text">SAFEZONE PHASE 1</span>
+                    </div>
+                    <div class="map-header-right">
+                        <span class="map-hint-text"><kbd>SCROLL</kbd> ZOOM IN / OUT</span>
+                        <span class="map-hint-text"><kbd>M</kbd> CLOSE MAP</span>
+                        <button class="btn-close" id="btn-close-map">&times;</button>
+                    </div>
+                </div>
+
+                <div class="map-viewport-box" id="map-viewport">
+                    <div class="map-canvas-wrapper" id="map-canvas-wrapper">
+                        <div class="map-grid-overlay"></div>
+                        
+                        <!-- Safezone Circles -->
+                        <div class="map-circle safezone-active" id="map-circle-active"></div>
+                        <div class="map-circle safezone-next" id="map-circle-next"></div>
+
+                        <!-- Dynamic Blips & Markers -->
+                        <div class="map-blip blip-player" id="map-blip-player" style="top: 45%; left: 52%;">
+                            <span class="blip-label">YOU</span>
+                        </div>
+                        <div class="map-blip blip-airdrop" style="top: 38%; left: 48%;">
+                            <span class="blip-label">🪂 AIRDROP</span>
+                        </div>
+                        <div class="map-blip blip-ping" style="top: 42%; left: 58%;">
+                            <span class="blip-label">🎯 ENEMY</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-footer-controls">
+                    <div class="map-legend">
+                        <span class="legend-item"><span class="legend-dot dot-safe"></span> SAFEZONE</span>
+                        <span class="legend-item"><span class="legend-dot dot-next"></span> NEXT ZONE</span>
+                        <span class="legend-item"><span class="legend-dot dot-airdrop"></span> AIRDROP</span>
+                        <span class="legend-item"><span class="legend-dot dot-ping"></span> ENEMY PING</span>
+                    </div>
+                    <div class="map-zoom-buttons">
+                        <button id="btn-zoom-out" class="btn-zoom">- ZOOM OUT</button>
+                        <span id="zoom-level-text" class="zoom-level-badge">100%</span>
+                        <button id="btn-zoom-in" class="btn-zoom">+ ZOOM IN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Team Modal Overlay -->
+        <div id="create-room-modal" class="modal-overlay hidden">
+            <div class="military-card modal-content create-team-modal-card">
+                <div class="panel-header modal-team-header">
+                    <h2>CREATE <span class="highlight">TIM</span></h2>
+                    <button class="btn-close" id="btn-close-create-room-modal">&times;</button>
+                </div>
+                
+                <div class="team-modal-body">
+                    <div class="team-logo-preview-box">
+                        <img id="create-team-logo-preview" src="assets/images/default_team.png" alt="Logo Preview" class="team-logo-img">
+                        <span class="logo-preview-label">TEAM LOGO PREVIEW</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>NAMA TIM / SQUAD</label>
+                        <input type="text" id="create-room-name" class="input-dark" placeholder="Masukkan Nama Tim (cth: ALPHA SQUAD)">
+                    </div>
+
+                    <div class="form-group">
+                        <label>URL LOGO TIM (OPTIONAL)</label>
+                        <input type="text" id="create-room-logo" class="input-dark" placeholder="https://i.imgur.com/yourlogo.png" oninput="document.getElementById('create-team-logo-preview').src = this.value || 'assets/images/default_team.png'">
+                    </div>
+
+                    <div class="form-group">
+                        <label>PASSWORD TIM (OPTIONAL)</label>
+                        <input type="password" id="create-room-pass" class="input-dark" placeholder="Kosongkan jika Publik">
+                    </div>
+
+                    <div class="modal-actions" style="display: flex; gap: 12px; margin-top: 22px;">
+                        <button id="btn-confirm-create-room" class="btn btn-primary" style="flex: 1; padding: 12px 0;">CREATE TIM</button>
+                        <button id="btn-cancel-create-room" class="btn btn-secondary" style="flex: 1; padding: 12px 0;">CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Countdown Panel -->
+        <div id="countdown-container" class="ui-panel hidden">
+            <div class="countdown-card">
+                <div class="countdown-label">MATCH STARTING IN</div>
+                <div id="countdown-digit" class="countdown-digit">20</div>
+            </div>
+        </div>
+
+        <!-- Tactical Airdrop Incoming Notification Overlay -->
+        <div id="airdrop-container" class="ui-panel hidden">
+            <div class="airdrop-card-glass">
+                <div class="airdrop-icon-box">
+                    <span class="airdrop-crate-icon">🪂</span>
+                </div>
+                <div class="airdrop-text-box">
+                    <span class="airdrop-header-tag">✦ AIRDROP SUPPLY ✦</span>
+                    <h2 class="airdrop-title">AIRDROP AKAN SEGERA MUNCUL!</h2>
+                    <span class="airdrop-sub" id="airdrop-coords-text">PERIKSA PETA / COMPASS UNTUK LOKASI DROP</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tactical Safezone Warning Notification Overlay (ZONA MULAI BERGERAK) -->
+        <div id="zone-warn-container" class="ui-panel hidden">
+            <div class="zone-warn-card-glass">
+                <div class="zone-warn-icon-box">
+                    <span class="zone-warn-hazard-icon">⚠️</span>
+                </div>
+                <div class="zone-warn-text-box">
+                    <span class="zone-warn-header-tag">✦ SAFE ZONE WARNING ✦</span>
+                    <h2 class="zone-warn-title" id="zone-warn-title-text">ZONA MULAI BERGERAK!</h2>
+                    <span class="zone-warn-sub" id="zone-warn-sub-text">SEGERA MASUK KE DALAM LINGKARAN AMAN ZONA!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tournament Broadcaster Spectate Teammate HUD Overlay -->
+        <div id="spectate-container" class="ui-panel hidden">
+            <div class="spectate-card-glass">
+                <div class="spectate-top-header">
+                    <div class="live-dot-pulse"></div>
+                    <span class="spectate-tag-text">TOURNAMENT SPECTATE FEED</span>
+                    <span class="spectate-live-badge">LIVE 🔴</span>
+                </div>
+                
+                <div class="spectate-main-body">
+                    <div class="spectate-player-info">
+                        <div class="spectate-avatar-box">
+                            <img src="assets/images/default_team.png" alt="Avatar" class="spectate-avatar-img">
+                        </div>
+                        <div class="spectate-name-group">
+                            <span class="spectate-team-tag" id="spectate-team-name">SQUAD MEMBER</span>
+                            <h2 class="spectate-target-name" id="spectate-player-name">REXY</h2>
+                        </div>
+                        <div class="spectate-kills-pill" id="spectate-player-kills">
+                            <span class="skull-icon">☠️</span> 4 KILLS
+                        </div>
+                    </div>
+
+                    <div class="spectate-bars-box">
+                        <div class="spectate-bar-row">
+                            <span class="spectate-bar-label">HP</span>
+                            <div class="spectate-bar-track">
+                                <div class="spectate-bar-fill fill-health" id="spectate-hp-fill" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="spectate-controls-bar">
+                    <span class="spectate-key-hint"><kbd>◄ Q</kbd> PREV PLAYER</span>
+                    <div class="controls-divider"></div>
+                    <span class="spectate-key-hint"><kbd>E ►</kbd> NEXT PLAYER</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simple Circular Enemy Ping Marker (Key Z Triggered) -->
+        <div id="enemy-ping-container" class="ui-panel hidden">
+            <div class="simple-ping-circle">
+                <div class="ping-circle-inner">
+                    <span class="ping-circle-icon">🎯</span>
+                </div>
+                <div class="ping-circle-ring"></div>
+                <div class="ping-circle-badge">
+                    <span id="ping-distance-text">145M</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center-Screen Tournament Kill Animation FX Banner -->
+        <div id="kill-fx-overlay" class="ui-panel hidden">
+            <div class="kill-fx-banner-glass">
+                <div class="kill-fx-header">
+                    <span class="kill-fx-skull-left">💀</span>
+                    <span class="kill-fx-header-text" id="kill-fx-title">HEADSHOT ELIMINATION</span>
+                    <span class="kill-fx-skull-right">💀</span>
+                </div>
+                <h1 class="kill-fx-victim-name" id="kill-fx-victim">SHADOW</h1>
+                <div class="kill-fx-badge-row">
+                    <span class="kill-fx-weapon-tag" id="kill-fx-weapon">AK-47</span>
+                    <span class="kill-fx-streak-tag" id="kill-fx-streak">2X DOUBLE KILL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top-Right Kill Feed / Kill FX UI -->
+        <div id="killfeed-container" class="ui-panel"></div>
+
+        <!-- Team Eliminated Overlay -->
+        <div id="elimination-container" class="ui-panel hidden">
+            <div class="elimination-card">
+                <div class="elimination-rank" id="elim-rank">#10</div>
+                <img id="elim-logo" src="assets/images/default_team.png" alt="Logo" class="elim-logo">
+                <div class="elim-team-name" id="elim-team-name">TEAM NAME</div>
+                <div class="elim-text">TEAM ELIMINATED</div>
+            </div>
+        </div>
+
+        <!-- Step 1: Winner Card Popup Overlay (Matches Image 1 Exactly) -->
+        <div id="winner-container" class="ui-panel hidden">
+            <div class="winner-card-tactical">
+                <div class="winner-top-label">✦ WINNER ✦</div>
+                <div class="winner-rank-ribbon">#1</div>
+                
+                <div class="winner-logo-splash-wrapper">
+                    <div class="red-splash-bg"></div>
+                    <img id="winner-logo" src="assets/images/default_team.png" alt="Logo" class="winner-tactical-logo">
+                </div>
+                
+                <h1 id="winner-team-name" class="winner-tactical-title">NAMA TIM</h1>
+                
+                <div class="winner-divider">
+                    <span class="divider-line"></span>
+                    <span class="diamond-icon">◆</span>
+                    <span class="divider-line"></span>
+                </div>
+                
+                <div class="winner-kills-box">
+                    <span class="kills-label">TOTAL KILLS</span>
+                    <span class="kills-value" id="winner-total-kills">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Kinetic Fullscreen Victory Text Overlay (Matches Image 2 Exactly) -->
+        <div id="victory-text-overlay" class="ui-panel hidden">
+            <div class="kinetic-text-wrapper">
+                <div class="kinetic-line">LAST TEAM</div>
+                <div class="kinetic-line">STANDING</div>
+                <div class="kinetic-line">THE</div>
+                <div class="kinetic-line">BATTLEGROUND</div>
+                <div class="kinetic-line highlight-red">IS YOURS!</div>
+            </div>
+        </div>
+
+        <!-- Dual-Panel Arena Leaderboards Panel (Matches User Screenshot) -->
+        <div id="results-container" class="ui-panel hidden">
+            <div class="arena-leaderboards-card">
+                <!-- Top Header -->
+                <div class="arena-header">
+                    <h1 class="arena-title">LEADERBOARDS</h1>
+                    <span class="arena-subtitle">PENGHANCUR BATTLEGROUND COMPETITIVE</span>
+                </div>
+
+                <!-- Dual Columns Layout (TOP TEAMS & TOP PLAYERS) -->
+                <div class="arena-dual-grid">
+                    <!-- LEFT COLUMN: TOP TEAMS -->
+                    <div class="arena-panel">
+                        <div class="arena-panel-title">TOP TEAMS</div>
+                        <div class="arena-table-wrapper">
+                            <table class="arena-table">
+                                <thead>
+                                    <tr>
+                                        <th>RANK</th>
+                                        <th style="text-align: left; padding-left: 12px;">TEAM</th>
+                                        <th>KILLS</th>
+                                        <th>KNOCKS</th>
+                                        <th>MEMBER</th>
+                                        <th>POINTS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="arena-teams-tbody">
+                                    <tr class="arena-row active-team-row">
+                                        <td><span class="rank-num rank-gold">1</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">61</td>
+                                        <td class="stat-num">10</td>
+                                        <td class="stat-num">10</td>
+                                        <td class="stat-num highlight-points">75</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num rank-silver">2</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">30</td>
+                                        <td class="stat-num">17</td>
+                                        <td class="stat-num">9</td>
+                                        <td class="stat-num highlight-points">40</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num rank-bronze">3</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">20</td>
+                                        <td class="stat-num">14</td>
+                                        <td class="stat-num">7</td>
+                                        <td class="stat-num highlight-points">25</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">4</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">10</td>
+                                        <td class="stat-num">10</td>
+                                        <td class="stat-num">9</td>
+                                        <td class="stat-num highlight-points">17</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">5</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">14</td>
+                                        <td class="stat-num">12</td>
+                                        <td class="stat-num">10</td>
+                                        <td class="stat-num highlight-points">15</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">6</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">12</td>
+                                        <td class="stat-num">8</td>
+                                        <td class="stat-num">8</td>
+                                        <td class="stat-num highlight-points">14</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">7</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">9</td>
+                                        <td class="stat-num">6</td>
+                                        <td class="stat-num">8</td>
+                                        <td class="stat-num highlight-points">11</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">8</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">7</td>
+                                        <td class="stat-num">5</td>
+                                        <td class="stat-num">7</td>
+                                        <td class="stat-num highlight-points">9</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">9</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">5</td>
+                                        <td class="stat-num">4</td>
+                                        <td class="stat-num">6</td>
+                                        <td class="stat-num highlight-points">7</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">10</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">4</td>
+                                        <td class="stat-num">3</td>
+                                        <td class="stat-num">5</td>
+                                        <td class="stat-num highlight-points">5</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">11</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">2</td>
+                                        <td class="stat-num">2</td>
+                                        <td class="stat-num">4</td>
+                                        <td class="stat-num highlight-points">3</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">12</span></td>
+                                        <td class="team-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <span class="arena-name">NAMA TIM</span>
+                                        </td>
+                                        <td class="stat-num">1</td>
+                                        <td class="stat-num">1</td>
+                                        <td class="stat-num">4</td>
+                                        <td class="stat-num highlight-points">1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: TOP PLAYERS -->
+                    <div class="arena-panel">
+                        <div class="arena-panel-title">TOP PLAYERS</div>
+                        <div class="arena-table-wrapper">
+                            <table class="arena-table">
+                                <thead>
+                                    <tr>
+                                        <th>RANK</th>
+                                        <th style="text-align: left; padding-left: 12px;">PLAYER</th>
+                                        <th>KILLS</th>
+                                        <th>KNOCKS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="arena-players-tbody">
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num rank-gold">1</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">0</td>
+                                        <td class="stat-num">0</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num rank-silver">2</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">0</td>
+                                        <td class="stat-num">0</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num rank-bronze">3</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">0</td>
+                                        <td class="stat-num">0</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">4</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">0</td>
+                                        <td class="stat-num">0</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">5</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">0</td>
+                                        <td class="stat-num">0</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">6</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">0</td>
+                                        <td class="stat-num">0</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">7</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">0</td>
+                                        <td class="stat-num">0</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">8</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">4</td>
+                                        <td class="stat-num">1</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">9</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">3</td>
+                                        <td class="stat-num">0</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">10</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">2</td>
+                                        <td class="stat-num">1</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">11</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">1</td>
+                                        <td class="stat-num">0</td>
+                                    </tr>
+                                    <tr class="arena-row">
+                                        <td><span class="rank-num">12</span></td>
+                                        <td class="player-cell">
+                                            <img src="assets/images/default_team.png" class="arena-avatar" alt="Logo">
+                                            <div class="player-info-box">
+                                                <span class="arena-name">NAMA PLAYER</span>
+                                                <span class="arena-subteam">NAMA TIM</span>
+                                            </div>
+                                        </td>
+                                        <td class="stat-num">0</td>
+                                        <td class="stat-num">1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Action -->
+                <div class="arena-footer">
+                    <button id="btn-close-results" class="btn-arena-close">BACK TO LOBBY</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Redeem Modal Overlay (Clean Ultra Frosted Glass UI) -->
+        <div id="redeem-container" class="ui-panel hidden">
+            <div class="military-card redeem-card-box">
+                <div class="panel-header modal-redeem-header">
+                    <h2>REDEEM <span class="highlight">CODE</span></h2>
+                    <button class="btn-close" id="btn-close-redeem">&times;</button>
+                </div>
+                <div class="panel-body redeem-modal-body">
+                    <div class="form-group" style="width: 100%; margin-bottom: 20px;">
+                        <label class="redeem-input-label">KODE VOUCHER / EVENT</label>
+                        <input type="text" id="input-redeem-code" class="input-dark redeem-code-input" placeholder="Masukkan Kode Voucher (cth: BG2026)">
+                    </div>
+                    <button id="btn-submit-redeem" class="btn-claim-reward-accent">KLAIM KODE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification Area -->
+        <div id="notification-container"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/hud.js"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/room.js"></script>
+    <script src="js/team.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="js/killfeed.js"></script>
+    <script src="js/elimination.js"></script>
+    <script src="js/winner.js"></script>
+    <script src="js/results.js"></script>
+    <script src="js/redeem.js"></script>
+    <script src="js/airdrop.js"></script>
+    <script src="js/zone_warn.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/spectate.js"></script>
+    <script src="js/ping.js"></script>
+    <script src="js/map.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+ClientAnimations = ClientAnimations or {}

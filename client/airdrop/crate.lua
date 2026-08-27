@@ -1,0 +1,1 @@
+ClientAirdropCrate = ClientAirdropCrate or {}

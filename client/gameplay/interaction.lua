@@ -1,0 +1,1 @@
+ClientInteraction = ClientInteraction or {}

@@ -1,0 +1,47 @@
+/* Glowing Military Countdown CSS */
+#countdown-container {
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 150;
+    pointer-events: none;
+}
+
+.countdown-card {
+    text-align: center;
+    background: rgba(15, 23, 42, 0.9);
+    border: 2px solid var(--accent-blue);
+    border-radius: 12px;
+    padding: 24px 48px;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.4), inset 0 0 20px rgba(56, 189, 248, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.countdown-label {
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.countdown-digit {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--accent-blue);
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
+    font-family: monospace, sans-serif;
+    transition: transform 0.15s ease-out;
+}
+
+.countdown-digit.pulse {
+    transform: scale(1.25);
+    color: var(--accent-gold);
+    text-shadow: 0 0 30px rgba(234, 179, 8, 0.9);
+}
+
+.countdown-digit.go {
+    color: #22c55e;
+    text-shadow: 0 0 40px rgba(34, 197, 94, 1);
+    font-size: 5.5rem;
+}

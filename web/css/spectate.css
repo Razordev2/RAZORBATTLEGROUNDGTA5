@@ -1,0 +1,232 @@
+/* Tournament Broadcaster Spectate Teammate HUD CSS */
+#spectate-container {
+    position: fixed;
+    bottom: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 175;
+    pointer-events: none;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.spectate-card-glass {
+    background: linear-gradient(135deg, rgba(8, 12, 22, 0.92) 0%, rgba(14, 20, 36, 0.85) 100%);
+    backdrop-filter: blur(32px) saturate(180%);
+    border: 1.5px solid rgba(56, 189, 248, 0.75);
+    border-radius: 14px;
+    padding: 0;
+    width: 380px;
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.45), 0 25px 60px rgba(0, 0, 0, 0.95), inset 0 0 20px rgba(56, 189, 248, 0.2);
+    color: #ffffff;
+    overflow: hidden;
+    animation: tourneySpectateSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Tournament Top Header Bar */
+.spectate-top-header {
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.25) 0%, rgba(14, 20, 36, 0.6) 100%);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.4);
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.live-dot-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+    box-shadow: 0 0 10px #ef4444;
+    animation: livePulse 1.2s ease-in-out infinite alternate;
+}
+
+.spectate-tag-text {
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #38bdf8;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+}
+
+.spectate-live-badge {
+    font-size: 0.62rem;
+    font-weight: 900;
+    color: #ef4444;
+    letter-spacing: 1px;
+}
+
+/* Main Body Layout */
+.spectate-main-body {
+    padding: 14px 18px 12px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.spectate-player-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.spectate-avatar-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1.5px solid rgba(56, 189, 248, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+.spectate-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spectate-name-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.spectate-team-tag {
+    font-size: 0.58rem;
+    font-weight: 900;
+    color: #94a3b8;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.spectate-target-name {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
+}
+
+/* Kills Pill */
+.spectate-kills-pill {
+    background: rgba(245, 158, 11, 0.2);
+    border: 1px solid rgba(245, 158, 11, 0.65);
+    color: #f59e0b;
+    font-weight: 900;
+    font-size: 0.72rem;
+    padding: 5px 10px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Health Bar */
+.spectate-bars-box {
+    width: 100%;
+}
+
+.spectate-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.spectate-bar-label {
+    font-size: 0.68rem;
+    font-weight: 900;
+    color: #38bdf8;
+    letter-spacing: 1px;
+}
+
+.spectate-bar-track {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 1px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.spectate-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s ease-out;
+}
+
+.fill-health {
+    background: linear-gradient(90deg, #10b981, #34d399);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.9);
+}
+
+/* Controls Hint Bar */
+.spectate-controls-bar {
+    background: rgba(6, 10, 18, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.controls-divider {
+    width: 1px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.spectate-key-hint {
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.5px;
+}
+
+.spectate-key-hint kbd {
+    background: rgba(56, 189, 248, 0.22);
+    border: 1px solid rgba(56, 189, 248, 0.65);
+    color: #38bdf8;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.65rem;
+    font-weight: 900;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+/* Animations */
+@keyframes tourneySpectateSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.92);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes livePulse {
+    from {
+        opacity: 0.4;
+        box-shadow: 0 0 4px #ef4444;
+    }
+    to {
+        opacity: 1;
+        box-shadow: 0 0 12px #ef4444;
+    }
+}

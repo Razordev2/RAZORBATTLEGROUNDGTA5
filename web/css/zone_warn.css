@@ -1,0 +1,116 @@
+/* Tactical Safezone Warning Notification CSS (ZONA MULAI BERGERAK) */
+#zone-warn-container {
+    position: fixed;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 180;
+    pointer-events: none;
+    width: 90vw;
+    max-width: 440px;
+}
+
+.zone-warn-card-glass {
+    background: rgba(10, 14, 24, 0.78);
+    backdrop-filter: blur(32px) saturate(180%);
+    border: 1.5px solid rgba(239, 68, 68, 0.85);
+    border-radius: 14px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.55), 0 20px 60px rgba(0, 0, 0, 0.92), inset 0 0 15px rgba(239, 68, 68, 0.2);
+    color: #ffffff;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    animation: zoneWarnSlideDown 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.zone-warn-card-glass.animate-out {
+    animation: zoneWarnSlideOut 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.zone-warn-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: rgba(239, 68, 68, 0.22);
+    border: 1px solid rgba(239, 68, 68, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+    animation: zoneWarnPulse 1.5s ease-in-out infinite alternate;
+}
+
+.zone-warn-hazard-icon {
+    font-size: 1.6rem;
+    filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.9));
+}
+
+.zone-warn-text-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.zone-warn-header-tag {
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ef4444;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.85);
+    margin-bottom: 2px;
+}
+
+.zone-warn-title {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: 0 0 14px rgba(239, 68, 68, 0.5);
+}
+
+.zone-warn-sub {
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+/* Keyframe Animations */
+@keyframes zoneWarnSlideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes zoneWarnSlideOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.9);
+    }
+}
+
+@keyframes zoneWarnPulse {
+    from {
+        box-shadow: 0 0 14px rgba(239, 68, 68, 0.4);
+        transform: scale(0.95);
+    }
+    to {
+        box-shadow: 0 0 30px rgba(239, 68, 68, 0.95);
+        transform: scale(1.05);
+    }
+}

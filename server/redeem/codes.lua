@@ -1,0 +1,1 @@
+ServerRedeemCodes = ServerRedeemCodes or {}

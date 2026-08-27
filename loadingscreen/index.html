@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>penghancur battleground</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loading-screen">
+        <!-- Subtle Background Grid & Vignette Overlay -->
+        <div class="bg-vignette"></div>
+        <div class="bg-subtle-grid"></div>
+
+        <!-- Top Navigation Header -->
+        <header class="top-nav-bar">
+            <div class="nav-left">
+                <img src="../web/gif/ACADEMIPGCE.gif" alt="Logo" class="nav-logo">
+                <div class="nav-title-group">
+                    <span class="nav-subtitle">OFFICIAL ARENA</span>
+                    <h1 class="nav-title">PENGHANCUR BATTLEGROUND COMPETITIVE</h1>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="status-pill">
+                    <span class="pulse-dot"></span>
+                    <span class="status-label">SEASON 1 • COMPETITIVE MATCHMAKING</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Middle Section (2-Column Clean Layout) -->
+        <main class="main-content">
+            <!-- Left Column: Tournament Info & Tip -->
+            <div class="content-col col-left">
+                <div class="feature-card">
+                    <div class="card-header">
+                        <span class="card-tag">OFFICIAL ARENA</span>
+                        <h2 class="card-title">PENGHANCUR BATTLE ROYALE</h2>
+                    </div>
+                    <p class="card-desc">
+                        KALO JAGO JANGAN PAKE CHEAT YA, KALO KETANGKAP BISA DI BANNED PERMANENT. JADI MAIN YANG BERSIH YA BRO.
+                    </p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <span class="tip-icon">💡</span>
+                        <span class="tip-title">TACTICAL GUIDELINE</span>
+                    </div>
+                    <p id="tip-text" class="tip-body">
+                        Tekan tombol [Z] untuk mengaktifkan Tactical Enemy Ping Marker sejauh 300m yang hanya dapat dilihat oleh anggota squad Anda.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column: Control Keybind Reference Table -->
+            <div class="content-col col-right">
+                <div class="controls-card">
+                    <div class="card-header">
+                        <span class="card-tag">QUICK CONTROLS</span>
+                        <h2 class="card-title">KEYBIND REFERENCE</h2>
+                    </div>
+
+                    <div class="keybind-list">
+                        <div class="keybind-row">
+                            <span class="keybind-action">Enemy Tactical Ping</span>
+                            <kbd class="keybind-kbd">Z</kbd>
+                        </div>
+                        <div class="keybind-row">
+                            <span class="keybind-action">Toggle Voice Channel</span>
+                            <kbd class="keybind-kbd">B</kbd>
+                        </div>
+                        <div class="keybind-row">
+                            <span class="keybind-action">Tactical Interactive Map</span>
+                            <kbd class="keybind-kbd">M</kbd>
+                        </div>
+                        <div class="keybind-row">
+                            <span class="keybind-action">Eject Aircraft / Parachute</span>
+                            <kbd class="keybind-kbd">SPACE / G</kbd>
+                        </div>
+                        <div class="keybind-row">
+                            <span class="keybind-action">Esports Custom Chat</span>
+                            <kbd class="keybind-kbd">T</kbd>
+                        </div>
+                        <div class="keybind-row">
+                            <span class="keybind-action">Battleground Inventory</span>
+                            <kbd class="keybind-kbd">F2</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Edge Razor Progress Bar -->
+        <footer class="bottom-progress-bar">
+            <div class="progress-info-line">
+                <span id="loading-status" class="loading-status">Connecting to arena server...</span>
+                <span id="loading-percent" class="loading-percent">0%</span>
+            </div>
+            <div class="progress-track-line">
+                <div id="progress-fill-line" class="progress-fill-line"></div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

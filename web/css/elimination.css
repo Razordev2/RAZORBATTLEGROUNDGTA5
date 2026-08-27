@@ -1,0 +1,48 @@
+/* Center Screen Team Eliminated Overlay CSS */
+#elimination-container {
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 180;
+    pointer-events: none;
+}
+
+.elimination-card {
+    background: linear-gradient(135deg, rgba(225, 29, 72, 0.9), rgba(15, 23, 42, 0.95));
+    border: 2px solid var(--accent-red);
+    border-radius: 12px;
+    padding: 24px 48px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(244, 63, 94, 0.6);
+    animation: scaleUp 0.4s ease-out;
+}
+
+.elimination-rank {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+.elim-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin: 10px 0;
+    border: 2px solid #fff;
+}
+
+.elim-team-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.elim-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fecdd3;
+    letter-spacing: 3px;
+    margin-top: 6px;
+}
